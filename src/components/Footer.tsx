@@ -7,9 +7,12 @@ const links = [
 
 export const Footer = () => (
   <footer className="border-t border-border mt-24">
-    <div className="container-page py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-      <div className="text-[15px] font-semibold tracking-tight">saha.team</div>
-      <nav className="flex flex-wrap gap-6">
+    <div className="container-page py-10 grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+      <div>
+        <div className="text-[15px] font-semibold tracking-tight">saha.team</div>
+        <div className="mt-2 text-xs text-muted-foreground">© 2026 saha.team</div>
+      </div>
+      <nav className="flex flex-wrap gap-6 md:justify-center">
         {links.map((l) => (
           <a
             key={l.href}
@@ -20,7 +23,10 @@ export const Footer = () => (
           </a>
         ))}
       </nav>
-      <div className="text-xs text-muted-foreground">© 2026 saha.team</div>
+      <div className="text-xs text-muted-foreground md:text-right leading-relaxed">
+        Teknopark İstanbul<br />
+        Pendik, İstanbul
+      </div>
     </div>
   </footer>
 );
