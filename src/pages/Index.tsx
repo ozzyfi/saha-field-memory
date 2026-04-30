@@ -10,11 +10,31 @@ const heroBadges = [
   "2–4 haftada pilot",
 ];
 
+const previewCards = [
+  {
+    title: "Saha mesajı geldi",
+    tag: "WhatsApp",
+    body: "Kat görevlisi: Oda 304 klima yine soğutmuyor, fotoğraf ekledim.",
+  },
+  {
+    title: "Kayıt yapılandırıldı",
+    tag: "AI-ready",
+    body: "Lokasyon: Oda 304 · Konu: Klima arızası · Kanıt: Fotoğraf · Aksiyon: Teknik görev · Hafıza: Oda geçmişi",
+  },
+  {
+    title: "AI ile sorgulanabilir",
+    tag: "Claude / ChatGPT / Local",
+    body: "Son 6 ayda Oda 304'te tekrar eden teknik ve misafir şikâyetlerini göster.",
+  },
+];
+
+const flowItems = ["Görev", "Kanıt", "Kapanış", "Hafıza"];
+
 const problems = [
   { title: "Dağınık", body: "Görev, fotoğraf, form — hepsi ayrı kanallarda." },
   { title: "Eksik", body: "Kapanışlarda sonuç, kanıt veya kök neden çoğu zaman yok." },
   { title: "Denetlenemez", body: "Kim ne yaptı, hangi AI hangi veriye baktı — belirsiz." },
-  { title: "AI okuyamaz", body: "Kirli veri, yapay zekanın güvenilir kullanabileceği yapıda değil." },
+  { title: "AI okuyamaz", body: "Kirli veri, yapay zekânın güvenilir kullanabileceği yapıda değil." },
 ];
 
 const steps = [
@@ -26,7 +46,7 @@ const steps = [
   {
     n: "2",
     title: "Yapılandır",
-    body: "Gelen veri otomatik olarak görev, lokasyon, kanıt, aksiyon ve ekipman hafızasına dönüşür. Örnek: 'Rulman değişti, ses düzeldi' → işlem kaydı + parça + sonuç + ekipman geçmişi.",
+    body: "Gelen veri otomatik olarak görev, lokasyon, kanıt, aksiyon ve ekipman hafızasına dönüşür. Örnek: \"Rulman değişti, ses düzeldi\" → işlem kaydı + parça + sonuç + ekipman geçmişi.",
   },
   {
     n: "3",
@@ -37,7 +57,7 @@ const steps = [
 
 const modules = [
   {
-    name: "Bakım",
+    name: "ToolA Bakım",
     body: "Teknik servis ve tesis ekipleri için. Arıza kaydı, parça takibi, ekipman geçmişi ve kapanış.",
     tags: [
       { label: "Arıza", tone: "blue" },
@@ -45,7 +65,7 @@ const modules = [
     ],
   },
   {
-    name: "Denetim",
+    name: "saha.team Denetim",
     body: "Kalite, HSE ve raf kontrol ekipleri için. Kontrol listesi, fotoğraf kanıtı, uygunsuzluk ve aksiyon.",
     tags: [
       { label: "HSE", tone: "teal" },
@@ -53,7 +73,7 @@ const modules = [
     ],
   },
   {
-    name: "Operasyon",
+    name: "saha.team Operasyon",
     body: "Konaklama, perakende, F&B ve lojistik ekipleri için. Görev, vardiya, lokasyon ve misafir talebi.",
     tags: [
       { label: "Vardiya", tone: "amber" },
@@ -61,6 +81,13 @@ const modules = [
     ],
   },
 ] as const;
+
+const qualityIssues = [
+  { label: "Eksik kök nedenler", count: 49 },
+  { label: "Kanıtsız kapanan işler", count: 18 },
+  { label: "Ekipmana bağlanmamış fotoğraflar", count: 12 },
+  { label: "Belirsiz lokasyonlar", count: 7 },
+];
 
 const aiClients = [
   "Claude — MCP",
@@ -103,36 +130,85 @@ const Divider = () => (
   </div>
 );
 
+const H2 = ({ children }: { children: React.ReactNode }) => (
+  <h2 className="font-serif-display text-4xl md:text-5xl tracking-tight max-w-3xl leading-[1.05]">
+    {children}
+  </h2>
+);
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
 
       {/* HERO */}
-      <section className="container-page pt-20 pb-24" id="urun">
-        <div className="max-w-3xl">
-          <SectionLabel>AI-ready saha operasyonu</SectionLabel>
-          <h1 className="text-4xl md:text-5xl lg:text-[56px] leading-[1.1] font-medium tracking-tight">
-            Sahadan gelen veriyi AI'ın kullanabileceği hafızaya dönüştürün.
-          </h1>
-          <p className="mt-6 max-w-[560px] text-base md:text-lg text-muted-foreground leading-relaxed">
-            WhatsApp mesajları, fotoğraflar, sesli notlar ve formlar artık kaybolmuyor.
-            saha.team bunları düzenli kayıtlara çevirir; siz de şirketinizin AI'ıyla
-            bu veriye anında soru sorabilirsiniz.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <CTAButton variant="primary">Demo Planla</CTAButton>
-            <CTAButton variant="outline">Pilot Başlat</CTAButton>
+      <section className="container-page pt-16 pb-20" id="urun">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-6">
+            <SectionLabel>AI-ready saha operasyonu</SectionLabel>
+            <h1 className="font-serif-display text-5xl md:text-6xl lg:text-[64px] leading-[1.02] tracking-tight">
+              Sahadan gelen veriyi <span className="text-accent-red">AI'ın kullanabileceği</span> operasyon hafızasına dönüştürün.
+            </h1>
+            <p className="mt-6 max-w-[540px] text-base md:text-[17px] text-muted-foreground leading-relaxed">
+              WhatsApp mesajları, fotoğraflar, sesli notlar ve formlar artık kaybolmuyor.
+              saha.team bunları görev, kanıt, aksiyon ve kapanış kayıtlarına çevirir; siz de
+              şirketinizin AI'ıyla bu veriye anında soru sorabilirsiniz.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <CTAButton variant="primary">Demo Planla</CTAButton>
+              <CTAButton variant="outline">Pilot Başlat</CTAButton>
+            </div>
+            <div className="mt-10 flex flex-wrap gap-2">
+              {heroBadges.map((b) => (
+                <span
+                  key={b}
+                  className="inline-flex items-center h-8 px-3 rounded-full bg-surface border border-border text-xs text-muted-foreground"
+                >
+                  {b}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="mt-10 flex flex-wrap gap-2">
-            {heroBadges.map((b) => (
-              <span
-                key={b}
-                className="inline-flex items-center h-8 px-3 rounded-full bg-surface border border-border text-xs text-muted-foreground"
-              >
-                {b}
-              </span>
-            ))}
+
+          {/* HERO PREVIEW CARD */}
+          <div className="lg:col-span-6">
+            <div className="rounded-2xl border border-border bg-background p-5 md:p-6 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_40px_-30px_rgba(0,0,0,0.15)]">
+              <div className="flex items-start justify-between pb-4 border-b border-border">
+                <div>
+                  <div className="text-[13px] font-medium">Ozi's Workspace</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">Field memory stream</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">Data Quality</div>
+                  <div className="font-serif-display text-2xl leading-none mt-1 text-accent-red">87%</div>
+                </div>
+              </div>
+
+              <div className="mt-4 space-y-3">
+                {previewCards.map((c) => (
+                  <div key={c.title} className="rounded-lg border border-border bg-surface/60 p-3.5">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="text-[13px] font-medium">{c.title}</div>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-background border border-border text-muted-foreground whitespace-nowrap">
+                        {c.tag}
+                      </span>
+                    </div>
+                    <p className="mt-1.5 text-[12.5px] text-muted-foreground leading-relaxed">{c.body}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-2">
+                {flowItems.map((f) => (
+                  <div
+                    key={f}
+                    className="text-center text-[11px] uppercase tracking-[0.12em] text-muted-foreground py-2 rounded-md bg-surface border border-border"
+                  >
+                    {f}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -142,9 +218,7 @@ const Index = () => {
       {/* SORUN */}
       <section className="container-page py-24">
         <SectionLabel>Sorun</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-medium tracking-tight max-w-3xl leading-[1.15]">
-          Asıl operasyon bilgisi ERP'de değil, sahada kalıyor.
-        </h2>
+        <H2>Asıl operasyon bilgisi ERP'de değil, sahada kalıyor.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
           Teknik arıza notları, vardiya kayıtları, müşteri talepleri — bunların büyük
           çoğunluğu WhatsApp'ta veya çalışanların zihninde. Düzenlenmemiş veri, AI
@@ -165,9 +239,7 @@ const Index = () => {
       {/* NASIL ÇALIŞIR */}
       <section className="container-page py-24">
         <SectionLabel>Nasıl çalışır</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-medium tracking-tight max-w-3xl leading-[1.15]">
-          Dağınık veri girer. AI-ready hafıza çıkar.
-        </h2>
+        <H2>Dağınık veri girer. AI-ready hafıza çıkar.</H2>
         <div className="mt-12 max-w-3xl">
           {steps.map((s, i) => (
             <div key={s.n}>
@@ -191,9 +263,7 @@ const Index = () => {
       {/* MODÜLLER */}
       <section className="container-page py-24" id="moduller">
         <SectionLabel>Modüller</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-medium tracking-tight max-w-3xl leading-[1.15]">
-          Tek platformdan başlayın, ihtiyaca göre genişleyin.
-        </h2>
+        <H2>Tek platformdan başlayın, ihtiyaca göre genişleyin.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
           İlk pilot için bir ekip ve bir modül seçin. Sistem aynı; şablonlar farklı.
         </p>
@@ -222,23 +292,64 @@ const Index = () => {
         </div>
       </section>
 
-      <Divider />
+      {/* VERİ KALİTESİ */}
+      <section className="bg-surface-warm border-y border-border mt-24">
+        <div className="container-page py-24">
+          <SectionLabel>Veri kalitesi</SectionLabel>
+          <H2>AI'dan önce saha verinizin kalitesini görün.</H2>
+          <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
+            Çoğu sistem sadece veri toplar. saha.team eksik, belirsiz veya kanıtsız saha
+            kayıtlarını tespit eder ve veriyi AI'ın gerçekten kullanabileceği kaliteye
+            getirir.
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div className="md:col-span-2 rounded-xl border border-border bg-background p-8 flex flex-col justify-between">
+              <div className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                Veri Kalitesi Skoru
+              </div>
+              <div className="mt-6">
+                <div className="font-serif-display text-7xl md:text-8xl leading-none text-accent-red">
+                  87%
+                </div>
+                <div className="mt-3 text-sm text-muted-foreground">AI-ready kayıt kalitesi</div>
+              </div>
+            </div>
+
+            <div className="md:col-span-3 rounded-xl border border-border bg-background p-2">
+              <ul className="divide-y divide-border">
+                {qualityIssues.map((q) => (
+                  <li
+                    key={q.label}
+                    className="flex items-center justify-between px-4 py-4"
+                  >
+                    <span className="text-[15px]">{q.label}</span>
+                    <span className="font-serif-display text-2xl text-accent-red">{q.count}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* BRING YOUR OWN AI */}
       <section className="container-page py-24" id="ai-clients">
         <SectionLabel>Bring your own AI</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-medium tracking-tight max-w-3xl leading-[1.15]">
-          Hangi AI'ı kullanacağınızı siz seçin.
-        </h2>
+        <H2>Hangi AI'ı kullanacağınızı siz seçin.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
           saha.team kendi modelini dayatmaz. Verinizi düzenler ve şirketinizin izin
           verdiği modele güvenli şekilde açar.
+        </p>
+        <p className="mt-3 max-w-2xl text-sm text-muted-foreground leading-relaxed">
+          Mobil uygulamadaki saha ekipleri de yalnızca şirketinizin izin verdiği AI ile
+          çalışır.
         </p>
         <div className="mt-10 flex flex-wrap gap-2">
           {aiClients.map((c) => (
             <span
               key={c}
-              className="inline-flex items-center h-9 px-4 rounded-full bg-surface text-sm text-foreground/80"
+              className="inline-flex items-center h-9 px-4 rounded-full bg-surface border border-border text-sm text-foreground/80"
             >
               {c}
             </span>
@@ -251,17 +362,15 @@ const Index = () => {
       {/* SAHA VERİNİZE SORU SORUN */}
       <section className="container-page py-24">
         <SectionLabel>Saha verinize soru sorun</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-medium tracking-tight max-w-3xl leading-[1.15]">
-          Yöneticiler ve ekip liderleri anında cevap alır.
-        </h2>
+        <H2>Yöneticiler ve ekip liderleri anında cevap alır.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
-          Rol bazlı erişimle, herkes yalnızca kendi verisine ulaşır. Her yanıt
-          kaynağını gösterir.
+          Rol bazlı erişimle, herkes yalnızca kendi verisine ulaşır. Her yanıt kaynağını
+          gösterir.
         </p>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
           {questions.map((q) => (
             <div key={q} className="rounded-lg bg-surface p-6">
-              <p className="text-[15px] leading-relaxed">"{q}"</p>
+              <p className="font-serif-display text-xl leading-snug">"{q}"</p>
             </div>
           ))}
         </div>
@@ -272,9 +381,7 @@ const Index = () => {
       {/* GÜVENLİK */}
       <section className="container-page py-24" id="guvenlik">
         <SectionLabel>Güvenlik ve kontrol</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-medium tracking-tight max-w-3xl leading-[1.15]">
-          Veri kontrolünüz hiç elinizden çıkmaz.
-        </h2>
+        <H2>Veri kontrolünüz hiç elinizden çıkmaz.</H2>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
           {securityItems.map((s) => (
             <div key={s.title} className="rounded-xl border border-border bg-background p-6">
@@ -289,9 +396,9 @@ const Index = () => {
 
       {/* CTA */}
       <section className="container-page py-24">
-        <div className="rounded-2xl border border-border p-10 md:p-14 text-center">
-          <h2 className="text-3xl md:text-4xl font-medium tracking-tight leading-[1.15]">
-            Tek ekip, tek modül, 2–4 hafta.
+        <div className="rounded-2xl border border-border bg-surface-warm p-10 md:p-16 text-center">
+          <h2 className="font-serif-display text-4xl md:text-5xl tracking-tight leading-[1.05]">
+            Tek ekip, tek modül, <span className="text-accent-red">2–4 hafta.</span>
           </h2>
           <p className="mt-5 max-w-2xl mx-auto text-muted-foreground leading-relaxed">
             Küçük başlayın. Bir saha akışınızı AI-ready hafızaya dönüştürelim. Sistemin
