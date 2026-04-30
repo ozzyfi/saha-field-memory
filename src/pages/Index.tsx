@@ -237,7 +237,6 @@ const Index = () => {
 
       {/* NASIL ÇALIŞIR */}
       <section className="container-page py-24">
-        <SectionLabel>Nasıl çalışır</SectionLabel>
         <H2>Dağınık veri girer. AI-ready hafıza çıkar.</H2>
         <div className="mt-12 max-w-3xl">
           {steps.map((s, i) => (
