@@ -217,7 +217,6 @@ const Index = () => {
 
       {/* SORUN */}
       <section className="container-page py-24">
-        <SectionLabel>Sorun</SectionLabel>
         <H2>Asıl operasyon bilgisi ERP'de değil, sahada kalıyor.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
           Teknik arıza notları, vardiya kayıtları, müşteri talepleri — bunların büyük
@@ -226,7 +225,7 @@ const Index = () => {
         </p>
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {problems.map((p) => (
-            <div key={p.title} className="rounded-xl bg-surface p-6">
+            <div key={p.title} className="rounded-xl border border-border bg-surface p-6 h-full flex flex-col">
               <div className="text-base font-medium">{p.title}</div>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.body}</p>
             </div>
