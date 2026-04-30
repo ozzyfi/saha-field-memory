@@ -12,18 +12,18 @@ const tr: Dict = {
   "cta.demo": "Demo Planla",
   "cta.pilot": "Pilot Başlat",
 
-  "hero.eyebrow": "AI-ready saha operasyonu",
+  "hero.eyebrow": "AI-ready saha verisi",
   "hero.title.before": "Sahadan gelen veriyi ",
   "hero.title.accent": "AI'ın kullanabileceği",
   "hero.title.after": " operasyon hafızasına dönüştürün.",
   "hero.desc":
-    "WhatsApp mesajları, fotoğraflar, sesli notlar ve formlar artık kaybolmuyor. saha.team bunları görev, kanıt, aksiyon ve kapanış kayıtlarına çevirir; siz de şirketinizin AI'ıyla bu veriye anında soru sorabilirsiniz.",
+    "WhatsApp mesajları, fotoğraflar, sesli notlar ve formlar artık kaybolmuyor. saha.team bunları görev, kanıt, aksiyon ve kapanış kayıtlarına çevirir; siz de şirketinizin izin verdiği AI ile bu veriye anında soru sorabilirsiniz.",
   "hero.badge.1": "Veriniz sizde kalır",
   "hero.badge.2": "Kendi AI'ınızı getirin",
   "hero.badge.3": "WhatsApp + mobil + form",
   "hero.badge.4": "2–4 haftada pilot",
 
-  "preview.workspace": "Rixos Workspace",
+  "preview.workspace": "Demo Workspace",
   "preview.subtitle": "Field memory stream",
   "preview.dq": "Data Quality",
   "preview.card1.title": "Saha mesajı geldi",
@@ -80,7 +80,7 @@ const tr: Dict = {
   "mod.2.tag2": "Kalite",
   "mod.3.name": "saha.team Operasyon",
   "mod.3.body":
-    "Konaklama, perakende, F&B ve lojistik ekipleri için. Görev, vardiya, lokasyon ve misafir talebi.",
+    "Konaklama, perakende, F&B ve lojistik gibi lokasyon bazlı ekipler için. Görev, vardiya, lokasyon ve misafir/müşteri talebi.",
   "mod.3.tag1": "Vardiya",
   "mod.3.tag2": "Lokasyon",
 
@@ -103,18 +103,18 @@ const tr: Dict = {
   "q.title": "Yöneticiler ve ekip liderleri anında cevap alır.",
   "q.desc":
     "Rol bazlı erişimle, herkes yalnızca kendi verisine ulaşır. Her yanıt kaynağını gösterir.",
-  "q.1": "Son 30 günde en çok tekrar eden saha problemi ne?",
+  "q.1": "Son 30 günde en çok tekrar eden saha problemi ve nedeni ne?",
   "q.2": "Bu ekipmanda daha önce hangi parça değiştirilmiş?",
   "q.3": "Hangi işler kanıtsız veya eksik kapanmış?",
 
   "sec.title": "Veri kontrolünüz hiç elinizden çıkmaz.",
   "sec.1.title": "Rol bazlı erişim",
   "sec.1.body": "Kullanıcı, ekip ve lokasyon bazında yetkilendirme.",
-  "sec.2.title": "AI client kontrolü",
+  "sec.2.title": "AI erişim kontrolü",
   "sec.2.body": "Hangi modelin hangi veriye bakacağını siz yönetirsiniz.",
   "sec.3.title": "Kaynaklı cevaplar",
   "sec.3.body": "Her yanıt, dayandığı kayıt veya fotoğrafı gösterir.",
-  "sec.4.title": "On-prem seçeneği",
+  "sec.4.title": "On-prem / yerel kurulum",
   "sec.4.body": "Veri dışarı çıkmasın isteyenler için yerel model desteği.",
 
   "final.title.before": "Tek ekip, tek modül, ",
@@ -161,18 +161,18 @@ const en: Dict = {
   "cta.demo": "Book a Demo",
   "cta.pilot": "Start Pilot",
 
-  "hero.eyebrow": "AI-ready field operations",
+  "hero.eyebrow": "AI-ready field data",
   "hero.title.before": "Turn field data into ",
   "hero.title.accent": "AI-ready",
   "hero.title.after": " operations memory.",
   "hero.desc":
-    "WhatsApp messages, photos, voice notes and forms no longer get lost. saha.team turns them into tasks, evidence, actions and closure records — so you can query that data instantly with your company's AI.",
+    "WhatsApp messages, photos, voice notes and forms no longer get lost. saha.team turns them into tasks, evidence, actions and closure records — so you can query that data instantly with the AI your company has approved.",
   "hero.badge.1": "Your data stays with you",
   "hero.badge.2": "Bring your own AI",
   "hero.badge.3": "WhatsApp + mobile + forms",
   "hero.badge.4": "Pilot in 2–4 weeks",
 
-  "preview.workspace": "Rixos Workspace",
+  "preview.workspace": "Demo Workspace",
   "preview.subtitle": "Field memory stream",
   "preview.dq": "Data Quality",
   "preview.card1.title": "Field message received",
@@ -230,7 +230,7 @@ const en: Dict = {
   "mod.2.tag2": "Quality",
   "mod.3.name": "saha.team Operations",
   "mod.3.body":
-    "For hospitality, retail, F&B and logistics teams. Tasks, shifts, locations and guest requests.",
+    "For location-based teams in hospitality, retail, F&B and logistics. Tasks, shifts, locations and guest/customer requests.",
   "mod.3.tag1": "Shift",
   "mod.3.tag2": "Location",
 
@@ -253,18 +253,18 @@ const en: Dict = {
   "q.title": "Managers and team leads get instant answers.",
   "q.desc":
     "With role-based access, everyone only reaches their own data. Every answer cites its source.",
-  "q.1": "What's the most recurring field issue in the last 30 days?",
+  "q.1": "What's the most recurring field issue in the last 30 days and why?",
   "q.2": "Which parts have been replaced on this equipment before?",
   "q.3": "Which jobs were closed without evidence or incomplete?",
 
   "sec.title": "You never lose control of your data.",
   "sec.1.title": "Role-based access",
   "sec.1.body": "Permissions per user, team and location.",
-  "sec.2.title": "AI client control",
+  "sec.2.title": "AI access control",
   "sec.2.body": "You decide which model can see which data.",
   "sec.3.title": "Sourced answers",
   "sec.3.body": "Every reply shows the record or photo it relies on.",
-  "sec.4.title": "On-prem option",
+  "sec.4.title": "On-prem / local deployment",
   "sec.4.body": "Local model support for those who don't want data to leave.",
 
   "final.title.before": "One team, one module, ",
