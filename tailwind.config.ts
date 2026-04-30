@@ -18,6 +18,11 @@ export default {
       },
       colors: {
         surface: "hsl(var(--surface))",
+        "surface-warm": "hsl(var(--surface-warm))",
+        "accent-red": {
+          DEFAULT: "hsl(var(--accent-red))",
+          foreground: "hsl(var(--accent-red-foreground))",
+        },
         "tag-blue": {
           DEFAULT: "hsl(var(--tag-blue-bg))",
           foreground: "hsl(var(--tag-blue-fg))",
