@@ -372,11 +372,10 @@ const Index = () => {
 
       {/* GÜVENLİK */}
       <section className="container-page py-24" id="guvenlik">
-        <SectionLabel>Güvenlik ve kontrol</SectionLabel>
         <H2>Veri kontrolünüz hiç elinizden çıkmaz.</H2>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
           {securityItems.map((s) => (
-            <div key={s.title} className="rounded-xl border border-border bg-background p-6">
+            <div key={s.title} className="rounded-xl border border-border bg-background p-6 h-full flex flex-col">
               <div className="text-base font-medium">{s.title}</div>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.body}</p>
             </div>
