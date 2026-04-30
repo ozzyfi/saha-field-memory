@@ -175,7 +175,7 @@ const Index = () => {
             <div className="rounded-2xl border border-border bg-background p-5 md:p-6 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_40px_-30px_rgba(0,0,0,0.15)]">
               <div className="flex items-start justify-between pb-4 border-b border-border">
                 <div>
-                  <div className="text-[13px] font-medium">Ozi's Workspace</div>
+                  <div className="text-[13px] font-medium">Rixos Workspace</div>
                   <div className="text-xs text-muted-foreground mt-0.5">Field memory stream</div>
                 </div>
                 <div className="text-right">
