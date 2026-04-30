@@ -175,7 +175,7 @@ const Index = () => {
             <div className="rounded-2xl border border-border bg-background p-5 md:p-6 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_40px_-30px_rgba(0,0,0,0.15)]">
               <div className="flex items-start justify-between pb-4 border-b border-border">
                 <div>
-                  <div className="text-[13px] font-medium">Ozi's Workspace</div>
+                  <div className="text-[13px] font-medium">Rixos Workspace</div>
                   <div className="text-xs text-muted-foreground mt-0.5">Field memory stream</div>
                 </div>
                 <div className="text-right">
@@ -217,7 +217,6 @@ const Index = () => {
 
       {/* SORUN */}
       <section className="container-page py-24">
-        <SectionLabel>Sorun</SectionLabel>
         <H2>Asıl operasyon bilgisi ERP'de değil, sahada kalıyor.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
           Teknik arıza notları, vardiya kayıtları, müşteri talepleri — bunların büyük
@@ -226,7 +225,7 @@ const Index = () => {
         </p>
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {problems.map((p) => (
-            <div key={p.title} className="rounded-xl bg-surface p-6">
+            <div key={p.title} className="rounded-xl border border-border bg-surface p-6 h-full flex flex-col">
               <div className="text-base font-medium">{p.title}</div>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.body}</p>
             </div>
@@ -238,7 +237,6 @@ const Index = () => {
 
       {/* NASIL ÇALIŞIR */}
       <section className="container-page py-24">
-        <SectionLabel>Nasıl çalışır</SectionLabel>
         <H2>Dağınık veri girer. AI-ready hafıza çıkar.</H2>
         <div className="mt-12 max-w-3xl">
           {steps.map((s, i) => (
@@ -262,7 +260,6 @@ const Index = () => {
 
       {/* MODÜLLER */}
       <section className="container-page py-24" id="moduller">
-        <SectionLabel>Modüller</SectionLabel>
         <H2>Tek platformdan başlayın, ihtiyaca göre genişleyin.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
           İlk pilot için bir ekip ve bir modül seçin. Sistem aynı; şablonlar farklı.
@@ -271,22 +268,20 @@ const Index = () => {
           {modules.map((m) => (
             <div
               key={m.name}
-              className="rounded-xl border border-border bg-background p-6 flex flex-col"
+              className="rounded-xl border border-border bg-background p-6 flex flex-col h-full min-h-[220px]"
             >
-              <div className="flex items-start justify-between gap-3">
-                <div className="text-lg font-medium">{m.name}</div>
-                <div className="flex flex-wrap gap-1.5 justify-end">
-                  {m.tags.map((t) => (
-                    <span
-                      key={t.label}
-                      className={`inline-flex items-center h-6 px-2.5 rounded-full text-[11px] font-medium ${toneClass(t.tone)}`}
-                    >
-                      {t.label}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-1.5">
+                {m.tags.map((t) => (
+                  <span
+                    key={t.label}
+                    className={`inline-flex items-center h-6 px-2.5 rounded-full text-[11px] font-medium ${toneClass(t.tone)}`}
+                  >
+                    {t.label}
+                  </span>
+                ))}
               </div>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{m.body}</p>
+              <div className="mt-4 text-lg font-medium">{m.name}</div>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{m.body}</p>
             </div>
           ))}
         </div>
@@ -295,7 +290,6 @@ const Index = () => {
       {/* VERİ KALİTESİ */}
       <section className="bg-surface-warm border-y border-border mt-24">
         <div className="container-page py-24">
-          <SectionLabel>Veri kalitesi</SectionLabel>
           <H2>AI'dan önce saha verinizin kalitesini görün.</H2>
           <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
             Çoğu sistem sadece veri toplar. saha.team eksik, belirsiz veya kanıtsız saha
@@ -335,7 +329,6 @@ const Index = () => {
 
       {/* BRING YOUR OWN AI */}
       <section className="container-page py-24" id="ai-clients">
-        <SectionLabel>Bring your own AI</SectionLabel>
         <H2>Hangi AI'ı kullanacağınızı siz seçin.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
           saha.team kendi modelini dayatmaz. Verinizi düzenler ve şirketinizin izin
@@ -361,7 +354,6 @@ const Index = () => {
 
       {/* SAHA VERİNİZE SORU SORUN */}
       <section className="container-page py-24">
-        <SectionLabel>Saha verinize soru sorun</SectionLabel>
         <H2>Yöneticiler ve ekip liderleri anında cevap alır.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
           Rol bazlı erişimle, herkes yalnızca kendi verisine ulaşır. Her yanıt kaynağını
@@ -369,7 +361,7 @@ const Index = () => {
         </p>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
           {questions.map((q) => (
-            <div key={q} className="rounded-lg bg-surface p-6">
+            <div key={q} className="rounded-xl border border-border bg-surface p-6 h-full flex">
               <p className="font-serif-display text-xl leading-snug">"{q}"</p>
             </div>
           ))}
@@ -380,11 +372,10 @@ const Index = () => {
 
       {/* GÜVENLİK */}
       <section className="container-page py-24" id="guvenlik">
-        <SectionLabel>Güvenlik ve kontrol</SectionLabel>
         <H2>Veri kontrolünüz hiç elinizden çıkmaz.</H2>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
           {securityItems.map((s) => (
-            <div key={s.title} className="rounded-xl border border-border bg-background p-6">
+            <div key={s.title} className="rounded-xl border border-border bg-background p-6 h-full flex flex-col">
               <div className="text-base font-medium">{s.title}</div>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.body}</p>
             </div>
