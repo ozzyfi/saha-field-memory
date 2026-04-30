@@ -354,7 +354,6 @@ const Index = () => {
 
       {/* SAHA VERİNİZE SORU SORUN */}
       <section className="container-page py-24">
-        <SectionLabel>Saha verinize soru sorun</SectionLabel>
         <H2>Yöneticiler ve ekip liderleri anında cevap alır.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
           Rol bazlı erişimle, herkes yalnızca kendi verisine ulaşır. Her yanıt kaynağını
@@ -362,7 +361,7 @@ const Index = () => {
         </p>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
           {questions.map((q) => (
-            <div key={q} className="rounded-lg bg-surface p-6">
+            <div key={q} className="rounded-xl border border-border bg-surface p-6 h-full flex">
               <p className="font-serif-display text-xl leading-snug">"{q}"</p>
             </div>
           ))}
