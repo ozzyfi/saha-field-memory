@@ -7,13 +7,29 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1.5rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1100px",
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+      },
       colors: {
+        surface: "hsl(var(--surface))",
+        "tag-blue": {
+          DEFAULT: "hsl(var(--tag-blue-bg))",
+          foreground: "hsl(var(--tag-blue-fg))",
+        },
+        "tag-teal": {
+          DEFAULT: "hsl(var(--tag-teal-bg))",
+          foreground: "hsl(var(--tag-teal-fg))",
+        },
+        "tag-amber": {
+          DEFAULT: "hsl(var(--tag-amber-bg))",
+          foreground: "hsl(var(--tag-amber-fg))",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
