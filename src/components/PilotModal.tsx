@@ -1,39 +1,17 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { usePilotModal } from "./PilotModalContext";
+import { useI18n } from "./I18nContext";
 import { toast } from "@/hooks/use-toast";
 
-const pilotSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .nonempty({ message: "Ad soyad gerekli" })
-    .max(100, { message: "Ad soyad en fazla 100 karakter olabilir" }),
-  company: z
-    .string()
-    .trim()
-    .nonempty({ message: "Şirket adı gerekli" })
-    .max(120, { message: "Şirket adı en fazla 120 karakter olabilir" }),
-  phone: z
-    .string()
-    .trim()
-    .nonempty({ message: "Telefon gerekli" })
-    .max(30, { message: "Telefon en fazla 30 karakter olabilir" })
-    .regex(/^[0-9+\s().-]+$/, { message: "Geçerli bir telefon girin" }),
-  email: z
-    .string()
-    .trim()
-    .email({ message: "Geçerli bir e-posta girin" })
-    .max(255, { message: "E-posta en fazla 255 karakter olabilir" }),
-});
-
-type FormState = z.infer<typeof pilotSchema>;
+type FormState = { name: string; company: string; phone: string; email: string };
 type Errors = Partial<Record<keyof FormState, string>>;
 
 const initial: FormState = { name: "", company: "", phone: "", email: "" };
 
 export const PilotModal = () => {
   const { open, closeModal } = usePilotModal();
+  const { t } = useI18n();
   const [form, setForm] = useState<FormState>(initial);
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
@@ -52,6 +30,30 @@ export const PilotModal = () => {
   }, [open, closeModal]);
 
   if (!open) return null;
+
+  const pilotSchema = z.object({
+    name: z
+      .string()
+      .trim()
+      .nonempty({ message: t("modal.err.name") })
+      .max(100, { message: t("modal.err.nameMax") }),
+    company: z
+      .string()
+      .trim()
+      .nonempty({ message: t("modal.err.company") })
+      .max(120, { message: t("modal.err.companyMax") }),
+    phone: z
+      .string()
+      .trim()
+      .nonempty({ message: t("modal.err.phone") })
+      .max(30, { message: t("modal.err.phoneMax") })
+      .regex(/^[0-9+\s().-]+$/, { message: t("modal.err.phoneFormat") }),
+    email: z
+      .string()
+      .trim()
+      .email({ message: t("modal.err.email") })
+      .max(255, { message: t("modal.err.emailMax") }),
+  });
 
   const update = (key: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((f) => ({ ...f, [key]: e.target.value }));
@@ -74,8 +76,8 @@ export const PilotModal = () => {
     setTimeout(() => {
       setSubmitting(false);
       toast({
-        title: "Pilot talebiniz alındı",
-        description: "24 saat içinde size dönüş yapacağız.",
+        title: t("modal.success.title"),
+        description: t("modal.success.desc"),
       });
       setForm(initial);
       setErrors({});
@@ -101,7 +103,7 @@ export const PilotModal = () => {
         <button
           type="button"
           onClick={closeModal}
-          aria-label="Kapat"
+          aria-label={t("modal.close")}
           className="absolute top-4 right-4 w-8 h-8 inline-flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-surface transition-colors"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -112,28 +114,26 @@ export const PilotModal = () => {
         <div className="flex items-center gap-2.5 text-accent-red">
           <span className="block w-6 h-px bg-accent-red" />
           <span className="text-[11px] font-medium uppercase tracking-[0.16em]">
-            2–4 haftalık pilot
+            {t("modal.eyebrow")}
           </span>
         </div>
 
         <h2 id="pilot-modal-title" className="mt-3 font-serif-display text-3xl tracking-tight leading-tight">
-          Pilotunuzu başlatın
+          {t("modal.title")}
         </h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          24 saat içinde size dönüş yapacağız.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">{t("modal.subtitle")}</p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4" noValidate>
           <div>
             <label htmlFor="pilot-name" className="block text-sm font-medium mb-1.5">
-              Ad Soyad
+              {t("modal.name")}
             </label>
             <input
               id="pilot-name"
               type="text"
               value={form.name}
               onChange={update("name")}
-              placeholder="Ahmet Yılmaz"
+              placeholder={t("modal.name.ph")}
               maxLength={100}
               autoComplete="name"
               className={inputCls}
@@ -143,14 +143,14 @@ export const PilotModal = () => {
 
           <div>
             <label htmlFor="pilot-company" className="block text-sm font-medium mb-1.5">
-              Şirket
+              {t("modal.company")}
             </label>
             <input
               id="pilot-company"
               type="text"
               value={form.company}
               onChange={update("company")}
-              placeholder="Şirket adı"
+              placeholder={t("modal.company.ph")}
               maxLength={120}
               autoComplete="organization"
               className={inputCls}
@@ -160,14 +160,14 @@ export const PilotModal = () => {
 
           <div>
             <label htmlFor="pilot-phone" className="block text-sm font-medium mb-1.5">
-              Telefon
+              {t("modal.phone")}
             </label>
             <input
               id="pilot-phone"
               type="tel"
               value={form.phone}
               onChange={update("phone")}
-              placeholder="+90 5xx xxx xx xx"
+              placeholder={t("modal.phone.ph")}
               maxLength={30}
               autoComplete="tel"
               className={inputCls}
@@ -177,14 +177,14 @@ export const PilotModal = () => {
 
           <div>
             <label htmlFor="pilot-email" className="block text-sm font-medium mb-1.5">
-              E-posta
+              {t("modal.email")}
             </label>
             <input
               id="pilot-email"
               type="email"
               value={form.email}
               onChange={update("email")}
-              placeholder="email@sirket.com"
+              placeholder={t("modal.email.ph")}
               maxLength={255}
               autoComplete="email"
               className={inputCls}
@@ -197,7 +197,7 @@ export const PilotModal = () => {
             disabled={submitting}
             className="w-full inline-flex items-center justify-center h-12 mt-2 rounded-md bg-accent-red text-accent-red-foreground text-[15px] font-medium hover:bg-accent-red/90 transition-colors disabled:opacity-60"
           >
-            {submitting ? "Gönderiliyor..." : "Pilot Talebi Gönder →"}
+            {submitting ? t("modal.submitting") : t("modal.submit")}
           </button>
         </form>
       </div>

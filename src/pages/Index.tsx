@@ -3,114 +3,7 @@ import { Footer } from "@/components/Footer";
 import { CTAButton } from "@/components/CTAButton";
 import { SectionLabel } from "@/components/SectionLabel";
 import { usePilotModal } from "@/components/PilotModalContext";
-
-const heroBadges = [
-  "Veriniz sizde kalır",
-  "Kendi AI'ınızı getirin",
-  "WhatsApp + mobil + form",
-  "2–4 haftada pilot",
-];
-
-const previewCards = [
-  {
-    title: "Saha mesajı geldi",
-    tag: "WhatsApp",
-    body: "Kat görevlisi: Oda 304 klima yine soğutmuyor, fotoğraf ekledim.",
-  },
-  {
-    title: "Kayıt yapılandırıldı",
-    tag: "AI-ready",
-    body: "Lokasyon: Oda 304 · Konu: Klima arızası · Kanıt: Fotoğraf · Aksiyon: Teknik görev · Hafıza: Oda geçmişi",
-  },
-  {
-    title: "AI ile sorgulanabilir",
-    tag: "Claude / ChatGPT / Local",
-    body: "Son 6 ayda Oda 304'te tekrar eden teknik ve misafir şikâyetlerini göster.",
-  },
-];
-
-const flowItems = ["Görev", "Kanıt", "Kapanış", "Hafıza"];
-
-const problems = [
-  { title: "Dağınık", body: "Görev, fotoğraf, form — hepsi ayrı kanallarda." },
-  { title: "Eksik", body: "Kapanışlarda sonuç, kanıt veya kök neden çoğu zaman yok." },
-  { title: "Denetlenemez", body: "Kim ne yaptı, hangi AI hangi veriye baktı — belirsiz." },
-  { title: "AI okuyamaz", body: "Kirli veri, yapay zekânın güvenilir kullanabileceği yapıda değil." },
-];
-
-const steps = [
-  {
-    n: "1",
-    title: "Topla",
-    body: "Ekibiniz alışkanlıklarını değiştirmiyor. WhatsApp mesajı, mobil fotoğraf, sesli not, form — hepsi saha.team'e akar.",
-  },
-  {
-    n: "2",
-    title: "Yapılandır",
-    body: "Gelen veri otomatik olarak görev, lokasyon, kanıt, aksiyon ve ekipman hafızasına dönüşür. Örnek: \"Rulman değişti, ses düzeldi\" → işlem kaydı + parça + sonuç + ekipman geçmişi.",
-  },
-  {
-    n: "3",
-    title: "Sorgula",
-    body: "Şirketinizin izin verdiği AI ile saha verilerinize soru sorabilirsiniz. ChatGPT, Claude, Copilot, Gemini veya kendi modeliniz — seçim sizin.",
-  },
-];
-
-const modules = [
-  {
-    name: "ToolA Bakım",
-    body: "Teknik servis ve tesis ekipleri için. Arıza kaydı, parça takibi, ekipman geçmişi ve kapanış.",
-    tags: [
-      { label: "Arıza", tone: "blue" },
-      { label: "Ekipman", tone: "blue" },
-    ],
-  },
-  {
-    name: "saha.team Denetim",
-    body: "Kalite, HSE ve raf kontrol ekipleri için. Kontrol listesi, fotoğraf kanıtı, uygunsuzluk ve aksiyon.",
-    tags: [
-      { label: "HSE", tone: "teal" },
-      { label: "Kalite", tone: "teal" },
-    ],
-  },
-  {
-    name: "saha.team Operasyon",
-    body: "Konaklama, perakende, F&B ve lojistik ekipleri için. Görev, vardiya, lokasyon ve misafir talebi.",
-    tags: [
-      { label: "Vardiya", tone: "amber" },
-      { label: "Lokasyon", tone: "amber" },
-    ],
-  },
-] as const;
-
-const qualityIssues = [
-  { label: "Eksik kök nedenler", count: 49 },
-  { label: "Kanıtsız kapanan işler", count: 18 },
-  { label: "Ekipmana bağlanmamış fotoğraflar", count: 12 },
-  { label: "Belirsiz lokasyonlar", count: 7 },
-];
-
-const aiClients = [
-  "Claude — MCP",
-  "ChatGPT — Connector",
-  "Copilot — M365",
-  "Gemini — API",
-  "Azure OpenAI",
-  "Local LLM — On-prem",
-];
-
-const questions = [
-  "Son 30 günde en çok tekrar eden saha problemi ne?",
-  "Bu ekipmanda daha önce hangi parça değiştirilmiş?",
-  "Hangi işler kanıtsız veya eksik kapanmış?",
-];
-
-const securityItems = [
-  { title: "Rol bazlı erişim", body: "Kullanıcı, ekip ve lokasyon bazında yetkilendirme." },
-  { title: "AI client kontrolü", body: "Hangi modelin hangi veriye bakacağını siz yönetirsiniz." },
-  { title: "Kaynaklı cevaplar", body: "Her yanıt, dayandığı kayıt veya fotoğrafı gösterir." },
-  { title: "On-prem seçeneği", body: "Veri dışarı çıkmasın isteyenler için yerel model desteği." },
-];
+import { useI18n } from "@/components/I18nContext";
 
 const toneClass = (tone: string) => {
   switch (tone) {
@@ -139,6 +32,93 @@ const H2 = ({ children }: { children: React.ReactNode }) => (
 
 const Index = () => {
   const { openModal } = usePilotModal();
+  const { t } = useI18n();
+
+  const heroBadges = [
+    t("hero.badge.1"),
+    t("hero.badge.2"),
+    t("hero.badge.3"),
+    t("hero.badge.4"),
+  ];
+
+  const previewCards = [
+    { title: t("preview.card1.title"), tag: t("preview.card1.tag"), body: t("preview.card1.body") },
+    { title: t("preview.card2.title"), tag: t("preview.card2.tag"), body: t("preview.card2.body") },
+    { title: t("preview.card3.title"), tag: t("preview.card3.tag"), body: t("preview.card3.body") },
+  ];
+
+  const flowItems = [
+    t("preview.flow.1"),
+    t("preview.flow.2"),
+    t("preview.flow.3"),
+    t("preview.flow.4"),
+  ];
+
+  const problems = [
+    { title: t("problem.1.title"), body: t("problem.1.body") },
+    { title: t("problem.2.title"), body: t("problem.2.body") },
+    { title: t("problem.3.title"), body: t("problem.3.body") },
+    { title: t("problem.4.title"), body: t("problem.4.body") },
+  ];
+
+  const steps = [
+    { n: "1", title: t("how.1.title"), body: t("how.1.body") },
+    { n: "2", title: t("how.2.title"), body: t("how.2.body") },
+    { n: "3", title: t("how.3.title"), body: t("how.3.body") },
+  ];
+
+  const modules = [
+    {
+      name: t("mod.1.name"),
+      body: t("mod.1.body"),
+      tags: [
+        { label: t("mod.1.tag1"), tone: "blue" },
+        { label: t("mod.1.tag2"), tone: "blue" },
+      ],
+    },
+    {
+      name: t("mod.2.name"),
+      body: t("mod.2.body"),
+      tags: [
+        { label: t("mod.2.tag1"), tone: "teal" },
+        { label: t("mod.2.tag2"), tone: "teal" },
+      ],
+    },
+    {
+      name: t("mod.3.name"),
+      body: t("mod.3.body"),
+      tags: [
+        { label: t("mod.3.tag1"), tone: "amber" },
+        { label: t("mod.3.tag2"), tone: "amber" },
+      ],
+    },
+  ];
+
+  const qualityIssues = [
+    { label: t("dq.issue.1"), count: 49 },
+    { label: t("dq.issue.2"), count: 18 },
+    { label: t("dq.issue.3"), count: 12 },
+    { label: t("dq.issue.4"), count: 7 },
+  ];
+
+  const aiClients = [
+    "Claude — MCP",
+    "ChatGPT — Connector",
+    "Copilot — M365",
+    "Gemini — API",
+    "Azure OpenAI",
+    "Local LLM — On-prem",
+  ];
+
+  const questions = [t("q.1"), t("q.2"), t("q.3")];
+
+  const securityItems = [
+    { title: t("sec.1.title"), body: t("sec.1.body") },
+    { title: t("sec.2.title"), body: t("sec.2.body") },
+    { title: t("sec.3.title"), body: t("sec.3.body") },
+    { title: t("sec.4.title"), body: t("sec.4.body") },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
@@ -147,18 +127,18 @@ const Index = () => {
       <section className="container-page pt-16 pb-20" id="urun">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <div className="lg:col-span-6 flex flex-col">
-            <SectionLabel>AI-ready saha operasyonu</SectionLabel>
+            <SectionLabel>{t("hero.eyebrow")}</SectionLabel>
             <h1 className="font-serif-display text-[44px] md:text-5xl lg:text-[56px] leading-[1.05] tracking-tight">
-              Sahadan gelen veriyi <span className="text-accent-red">AI'ın kullanabileceği</span> operasyon hafızasına dönüştürün.
+              {t("hero.title.before")}
+              <span className="text-accent-red">{t("hero.title.accent")}</span>
+              {t("hero.title.after")}
             </h1>
             <p className="mt-5 max-w-[520px] text-[15px] md:text-base text-muted-foreground leading-relaxed">
-              WhatsApp mesajları, fotoğraflar, sesli notlar ve formlar artık kaybolmuyor.
-              saha.team bunları görev, kanıt, aksiyon ve kapanış kayıtlarına çevirir; siz de
-              şirketinizin AI'ıyla bu veriye anında soru sorabilirsiniz.
+              {t("hero.desc")}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <CTAButton variant="primary" onClick={openModal}>Demo Planla</CTAButton>
-              <CTAButton variant="outline" onClick={openModal}>Pilot Başlat</CTAButton>
+              <CTAButton variant="primary" onClick={openModal}>{t("cta.demo")}</CTAButton>
+              <CTAButton variant="outline" onClick={openModal}>{t("cta.pilot")}</CTAButton>
             </div>
             <div className="mt-7 flex flex-wrap gap-2">
               {heroBadges.map((b) => (
@@ -177,11 +157,11 @@ const Index = () => {
             <div className="rounded-2xl border border-border bg-background p-5 md:p-6 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_40px_-30px_rgba(0,0,0,0.15)]">
               <div className="flex items-start justify-between pb-4 border-b border-border">
                 <div>
-                  <div className="text-[13px] font-medium">Rixos Workspace</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">Field memory stream</div>
+                  <div className="text-[13px] font-medium">{t("preview.workspace")}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{t("preview.subtitle")}</div>
                 </div>
                 <div className="text-right">
-                  <div className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">Data Quality</div>
+                  <div className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{t("preview.dq")}</div>
                   <div className="font-serif-display text-2xl leading-none mt-1 text-accent-red">87%</div>
                 </div>
               </div>
@@ -219,12 +199,8 @@ const Index = () => {
 
       {/* SORUN */}
       <section className="container-page py-24">
-        <H2>Asıl operasyon bilgisi ERP'de değil, sahada kalıyor.</H2>
-        <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
-          Teknik arıza notları, vardiya kayıtları, müşteri talepleri — bunların büyük
-          çoğunluğu WhatsApp'ta veya çalışanların zihninde. Düzenlenmemiş veri, AI
-          tarafından kullanılamaz.
-        </p>
+        <H2>{t("problem.title")}</H2>
+        <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">{t("problem.desc")}</p>
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {problems.map((p) => (
             <div key={p.title} className="rounded-xl border border-border bg-surface p-6 h-full flex flex-col">
@@ -239,7 +215,7 @@ const Index = () => {
 
       {/* NASIL ÇALIŞIR */}
       <section className="container-page py-24">
-        <H2>Dağınık veri girer. AI-ready hafıza çıkar.</H2>
+        <H2>{t("how.title")}</H2>
         <div className="mt-12 max-w-3xl">
           {steps.map((s, i) => (
             <div key={s.n}>
@@ -262,10 +238,8 @@ const Index = () => {
 
       {/* MODÜLLER */}
       <section className="container-page py-24" id="moduller">
-        <H2>Tek platformdan başlayın, ihtiyaca göre genişleyin.</H2>
-        <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
-          İlk pilot için bir ekip ve bir modül seçin. Sistem aynı; şablonlar farklı.
-        </p>
+        <H2>{t("modules.title")}</H2>
+        <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">{t("modules.desc")}</p>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
           {modules.map((m) => (
             <div
@@ -273,12 +247,12 @@ const Index = () => {
               className="rounded-xl border border-border bg-background p-6 flex flex-col h-full min-h-[220px]"
             >
               <div className="flex flex-wrap gap-1.5">
-                {m.tags.map((t) => (
+                {m.tags.map((tag) => (
                   <span
-                    key={t.label}
-                    className={`inline-flex items-center h-6 px-2.5 rounded-full text-[11px] font-medium ${toneClass(t.tone)}`}
+                    key={tag.label}
+                    className={`inline-flex items-center h-6 px-2.5 rounded-full text-[11px] font-medium ${toneClass(tag.tone)}`}
                   >
-                    {t.label}
+                    {tag.label}
                   </span>
                 ))}
               </div>
@@ -292,23 +266,19 @@ const Index = () => {
       {/* VERİ KALİTESİ */}
       <section className="bg-surface-warm border-y border-border mt-24">
         <div className="container-page py-24">
-          <H2>AI'dan önce saha verinizin kalitesini görün.</H2>
-          <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
-            Çoğu sistem sadece veri toplar. saha.team eksik, belirsiz veya kanıtsız saha
-            kayıtlarını tespit eder ve veriyi AI'ın gerçekten kullanabileceği kaliteye
-            getirir.
-          </p>
+          <H2>{t("dq.title")}</H2>
+          <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">{t("dq.desc")}</p>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-5 gap-4">
             <div className="md:col-span-2 rounded-xl border border-border bg-background p-8 flex flex-col justify-between">
               <div className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                Veri Kalitesi Skoru
+                {t("dq.scoreLabel")}
               </div>
               <div className="mt-6">
                 <div className="font-serif-display text-7xl md:text-8xl leading-none text-accent-red">
                   87%
                 </div>
-                <div className="mt-3 text-sm text-muted-foreground">AI-ready kayıt kalitesi</div>
+                <div className="mt-3 text-sm text-muted-foreground">{t("dq.scoreSub")}</div>
               </div>
             </div>
 
@@ -331,15 +301,9 @@ const Index = () => {
 
       {/* BRING YOUR OWN AI */}
       <section className="container-page py-24" id="ai-clients">
-        <H2>Hangi AI'ı kullanacağınızı siz seçin.</H2>
-        <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
-          saha.team kendi modelini dayatmaz. Verinizi düzenler ve şirketinizin izin
-          verdiği modele güvenli şekilde açar.
-        </p>
-        <p className="mt-3 max-w-2xl text-sm text-muted-foreground leading-relaxed">
-          Mobil uygulamadaki saha ekipleri de yalnızca şirketinizin izin verdiği AI ile
-          çalışır.
-        </p>
+        <H2>{t("ai.title")}</H2>
+        <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">{t("ai.desc")}</p>
+        <p className="mt-3 max-w-2xl text-sm text-muted-foreground leading-relaxed">{t("ai.desc2")}</p>
         <div className="mt-10 flex flex-wrap gap-2">
           {aiClients.map((c) => (
             <span
@@ -356,11 +320,8 @@ const Index = () => {
 
       {/* SAHA VERİNİZE SORU SORUN */}
       <section className="container-page py-24">
-        <H2>Yöneticiler ve ekip liderleri anında cevap alır.</H2>
-        <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
-          Rol bazlı erişimle, herkes yalnızca kendi verisine ulaşır. Her yanıt kaynağını
-          gösterir.
-        </p>
+        <H2>{t("q.title")}</H2>
+        <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">{t("q.desc")}</p>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
           {questions.map((q) => (
             <div key={q} className="rounded-xl border border-border bg-surface p-6 h-full flex">
@@ -374,7 +335,7 @@ const Index = () => {
 
       {/* GÜVENLİK */}
       <section className="container-page py-24" id="guvenlik">
-        <H2>Veri kontrolünüz hiç elinizden çıkmaz.</H2>
+        <H2>{t("sec.title")}</H2>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
           {securityItems.map((s) => (
             <div key={s.title} className="rounded-xl border border-border bg-background p-6 h-full flex flex-col">
@@ -391,15 +352,15 @@ const Index = () => {
       <section className="container-page py-24">
         <div className="rounded-2xl border border-border bg-surface-warm p-10 md:p-16 text-center">
           <h2 className="font-serif-display text-4xl md:text-5xl tracking-tight leading-[1.05]">
-            Tek ekip, tek modül, <span className="text-accent-red">2–4 hafta.</span>
+            {t("final.title.before")}
+            <span className="text-accent-red">{t("final.title.accent")}</span>
           </h2>
           <p className="mt-5 max-w-2xl mx-auto text-muted-foreground leading-relaxed">
-            Küçük başlayın. Bir saha akışınızı AI-ready hafızaya dönüştürelim. Sistemin
-            işe yaradığını gördükten sonra genişlersiniz.
+            {t("final.desc")}
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <CTAButton variant="primary" onClick={openModal}>Demo Planla</CTAButton>
-            <CTAButton variant="outline" onClick={openModal}>Pilot Başlat</CTAButton>
+            <CTAButton variant="primary" onClick={openModal}>{t("cta.demo")}</CTAButton>
+            <CTAButton variant="outline" onClick={openModal}>{t("cta.pilot")}</CTAButton>
           </div>
         </div>
       </section>
