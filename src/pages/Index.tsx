@@ -268,22 +268,20 @@ const Index = () => {
           {modules.map((m) => (
             <div
               key={m.name}
-              className="rounded-xl border border-border bg-background p-6 flex flex-col"
+              className="rounded-xl border border-border bg-background p-6 flex flex-col h-full min-h-[220px]"
             >
-              <div className="flex items-start justify-between gap-3">
-                <div className="text-lg font-medium">{m.name}</div>
-                <div className="flex flex-wrap gap-1.5 justify-end">
-                  {m.tags.map((t) => (
-                    <span
-                      key={t.label}
-                      className={`inline-flex items-center h-6 px-2.5 rounded-full text-[11px] font-medium ${toneClass(t.tone)}`}
-                    >
-                      {t.label}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-1.5">
+                {m.tags.map((t) => (
+                  <span
+                    key={t.label}
+                    className={`inline-flex items-center h-6 px-2.5 rounded-full text-[11px] font-medium ${toneClass(t.tone)}`}
+                  >
+                    {t.label}
+                  </span>
+                ))}
               </div>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{m.body}</p>
+              <div className="mt-4 text-lg font-medium">{m.name}</div>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{m.body}</p>
             </div>
           ))}
         </div>
