@@ -290,7 +290,6 @@ const Index = () => {
       {/* VERİ KALİTESİ */}
       <section className="bg-surface-warm border-y border-border mt-24">
         <div className="container-page py-24">
-          <SectionLabel>Veri kalitesi</SectionLabel>
           <H2>AI'dan önce saha verinizin kalitesini görün.</H2>
           <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
             Çoğu sistem sadece veri toplar. saha.team eksik, belirsiz veya kanıtsız saha
