@@ -195,7 +195,7 @@ export const PilotModal = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full inline-flex items-center justify-center h-12 mt-2 rounded-md bg-accent-red text-background text-[15px] font-medium hover:bg-accent-red/90 transition-colors disabled:opacity-60"
+            className="w-full inline-flex items-center justify-center h-12 mt-2 rounded-md bg-accent-red text-accent-red-foreground text-[15px] font-medium hover:bg-accent-red/90 transition-colors disabled:opacity-60"
           >
             {submitting ? "Gönderiliyor..." : "Pilot Talebi Gönder →"}
           </button>
