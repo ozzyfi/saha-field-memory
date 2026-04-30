@@ -1,5 +1,5 @@
 import { CTAButton } from "@/components/CTAButton";
-import logo from "@/assets/logo.png";
+import { Logo } from "@/components/Logo";
 
 const navLinks = [
   { label: "Ürün", href: "#urun" },
@@ -11,8 +11,8 @@ const navLinks = [
 export const Nav = () => (
   <header className="border-b border-border bg-background sticky top-0 z-40">
     <div className="container-page flex items-center justify-between h-16">
-      <a href="#" className="flex items-center" aria-label="saha.team">
-        <img src={logo} alt="saha.team" className="h-7 w-auto" />
+      <a href="#" aria-label="saha.team" className="text-foreground">
+        <Logo />
       </a>
       <nav className="hidden md:flex items-center gap-8">
         {navLinks.map((l) => (
