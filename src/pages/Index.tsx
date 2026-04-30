@@ -2,6 +2,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { CTAButton } from "@/components/CTAButton";
 import { SectionLabel } from "@/components/SectionLabel";
+import { usePilotModal } from "@/components/PilotModalContext";
 
 const heroBadges = [
   "Veriniz sizde kalır",
@@ -137,6 +138,7 @@ const H2 = ({ children }: { children: React.ReactNode }) => (
 );
 
 const Index = () => {
+  const { openModal } = usePilotModal();
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
@@ -155,8 +157,8 @@ const Index = () => {
               şirketinizin AI'ıyla bu veriye anında soru sorabilirsiniz.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <CTAButton variant="primary">Demo Planla</CTAButton>
-              <CTAButton variant="outline">Pilot Başlat</CTAButton>
+              <CTAButton variant="primary" onClick={openModal}>Demo Planla</CTAButton>
+              <CTAButton variant="outline" onClick={openModal}>Pilot Başlat</CTAButton>
             </div>
             <div className="mt-7 flex flex-wrap gap-2">
               {heroBadges.map((b) => (
@@ -396,8 +398,8 @@ const Index = () => {
             işe yaradığını gördükten sonra genişlersiniz.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <CTAButton variant="primary">Demo Planla</CTAButton>
-            <CTAButton variant="outline">Pilot Başlat</CTAButton>
+            <CTAButton variant="primary" onClick={openModal}>Demo Planla</CTAButton>
+            <CTAButton variant="outline" onClick={openModal}>Pilot Başlat</CTAButton>
           </div>
         </div>
       </section>

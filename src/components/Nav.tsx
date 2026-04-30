@@ -1,5 +1,6 @@
 import { CTAButton } from "@/components/CTAButton";
 import { Logo } from "@/components/Logo";
+import { usePilotModal } from "@/components/PilotModalContext";
 
 const navLinks = [
   { label: "Ürün", href: "#urun" },
@@ -8,26 +9,29 @@ const navLinks = [
   { label: "Güvenlik", href: "#guvenlik" },
 ];
 
-export const Nav = () => (
-  <header className="border-b border-border bg-background sticky top-0 z-40">
-    <div className="container-page flex items-center justify-between h-16">
-      <a href="#" aria-label="saha.team" className="text-foreground">
-        <Logo />
-      </a>
-      <nav className="hidden md:flex items-center gap-8">
-        {navLinks.map((l) => (
-          <a
-            key={l.href}
-            href={l.href}
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            {l.label}
-          </a>
-        ))}
-      </nav>
-      <CTAButton variant="primary" className="h-9 px-4 text-sm">
-        Demo Planla
-      </CTAButton>
-    </div>
-  </header>
-);
+export const Nav = () => {
+  const { openModal } = usePilotModal();
+  return (
+    <header className="border-b border-border bg-background sticky top-0 z-40">
+      <div className="container-page flex items-center justify-between h-16">
+        <a href="#" aria-label="saha.team" className="text-foreground">
+          <Logo />
+        </a>
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {l.label}
+            </a>
+          ))}
+        </nav>
+        <CTAButton variant="primary" className="h-9 px-4 text-sm" onClick={openModal}>
+          Demo Planla
+        </CTAButton>
+      </div>
+    </header>
+  );
+};
