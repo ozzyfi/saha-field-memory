@@ -1,4 +1,4 @@
-import logo from "@/assets/logo.png";
+import { Logo } from "@/components/Logo";
 
 const links = [
   { label: "Ürün", href: "#urun" },
@@ -10,8 +10,8 @@ const links = [
 export const Footer = () => (
   <footer className="border-t border-border mt-24">
     <div className="container-page py-10 grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-      <div>
-        <img src={logo} alt="saha.team" className="h-7 w-auto" />
+      <div className="text-foreground">
+        <Logo />
         <div className="mt-2 text-xs text-muted-foreground">© 2026 saha.team</div>
       </div>
       <nav className="flex flex-wrap gap-6 md:justify-center">
