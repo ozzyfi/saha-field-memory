@@ -143,26 +143,26 @@ const Index = () => {
 
       {/* HERO */}
       <section className="container-page pt-16 pb-20" id="urun">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="lg:col-span-6 flex flex-col">
             <SectionLabel>AI-ready saha operasyonu</SectionLabel>
-            <h1 className="font-serif-display text-5xl md:text-6xl lg:text-[64px] leading-[1.02] tracking-tight">
+            <h1 className="font-serif-display text-[44px] md:text-5xl lg:text-[56px] leading-[1.05] tracking-tight">
               Sahadan gelen veriyi <span className="text-accent-red">AI'ın kullanabileceği</span> operasyon hafızasına dönüştürün.
             </h1>
-            <p className="mt-6 max-w-[540px] text-base md:text-[17px] text-muted-foreground leading-relaxed">
+            <p className="mt-5 max-w-[520px] text-[15px] md:text-base text-muted-foreground leading-relaxed">
               WhatsApp mesajları, fotoğraflar, sesli notlar ve formlar artık kaybolmuyor.
               saha.team bunları görev, kanıt, aksiyon ve kapanış kayıtlarına çevirir; siz de
               şirketinizin AI'ıyla bu veriye anında soru sorabilirsiniz.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3">
               <CTAButton variant="primary">Demo Planla</CTAButton>
               <CTAButton variant="outline">Pilot Başlat</CTAButton>
             </div>
-            <div className="mt-10 flex flex-wrap gap-2">
+            <div className="mt-7 flex flex-wrap gap-2">
               {heroBadges.map((b) => (
                 <span
                   key={b}
-                  className="inline-flex items-center h-8 px-3 rounded-full bg-surface border border-border text-xs text-muted-foreground"
+                  className="inline-flex items-center h-7 px-2.5 rounded-full bg-surface border border-border text-[11px] text-muted-foreground"
                 >
                   {b}
                 </span>
@@ -184,7 +184,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="mt-4 space-y-3">
+              <div className="mt-4 space-y-2.5">
                 {previewCards.map((c) => (
                   <div key={c.title} className="rounded-lg border border-border bg-surface/60 p-3.5">
                     <div className="flex items-center justify-between gap-2">
@@ -198,11 +198,11 @@ const Index = () => {
                 ))}
               </div>
 
-              <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-2">
+              <div className="mt-4 grid grid-cols-4 gap-2">
                 {flowItems.map((f) => (
                   <div
                     key={f}
-                    className="text-center text-[11px] uppercase tracking-[0.12em] text-muted-foreground py-2 rounded-md bg-surface border border-border"
+                    className="text-center text-[10px] md:text-[11px] uppercase tracking-[0.12em] text-muted-foreground py-2 rounded-md bg-surface border border-border"
                   >
                     {f}
                   </div>
