@@ -329,7 +329,6 @@ const Index = () => {
 
       {/* BRING YOUR OWN AI */}
       <section className="container-page py-24" id="ai-clients">
-        <SectionLabel>Bring your own AI</SectionLabel>
         <H2>Hangi AI'ı kullanacağınızı siz seçin.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
           saha.team kendi modelini dayatmaz. Verinizi düzenler ve şirketinizin izin
