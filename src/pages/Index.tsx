@@ -260,7 +260,6 @@ const Index = () => {
 
       {/* MODÜLLER */}
       <section className="container-page py-24" id="moduller">
-        <SectionLabel>Modüller</SectionLabel>
         <H2>Tek platformdan başlayın, ihtiyaca göre genişleyin.</H2>
         <p className="mt-5 max-w-2xl text-muted-foreground leading-relaxed">
           İlk pilot için bir ekip ve bir modül seçin. Sistem aynı; şablonlar farklı.
