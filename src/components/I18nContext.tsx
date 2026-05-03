@@ -151,6 +151,8 @@ const tr: Dict = {
   "modal.err.phoneFormat": "Geçerli bir telefon girin",
   "modal.err.email": "Geçerli bir e-posta girin",
   "modal.err.emailMax": "E-posta en fazla 255 karakter olabilir",
+  "modal.err.submit": "Gönderim başarısız",
+  "modal.err.submitDesc": "Lütfen tekrar deneyin veya info@toola.net adresine yazın.",
 };
 
 const en: Dict = {
