@@ -125,71 +125,70 @@ const Index = () => {
 
       {/* HERO */}
       <section className="container-page pt-16 pb-20" id="urun">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          <div className="lg:col-span-6 flex flex-col">
-            <SectionLabel>{t("hero.eyebrow")}</SectionLabel>
-            <h1 className="font-serif-display text-[44px] md:text-5xl lg:text-[56px] leading-[1.05] tracking-tight">
-              {t("hero.title.before")}
-              <span className="text-accent-red">{t("hero.title.accent")}</span>
-              {t("hero.title.after")}
-            </h1>
-            <p className="mt-5 max-w-[520px] text-[15px] md:text-base text-muted-foreground leading-relaxed">
-              {t("hero.desc")}
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <CTAButton variant="primary" onClick={openModal}>{t("cta.demo")}</CTAButton>
-              <CTAButton variant="outline" onClick={openModal}>{t("cta.pilot")}</CTAButton>
+        {/* Üst: başlık + açıklama + butonlar + badge'ler — ortalanmış, dar */}
+        <div className="max-w-[680px] mx-auto flex flex-col items-center text-center">
+          <SectionLabel>{t("hero.eyebrow")}</SectionLabel>
+          <h1 className="font-serif-display text-[44px] md:text-5xl lg:text-[56px] leading-[1.05] tracking-tight">
+            {t("hero.title.before")}
+            <span className="text-accent-red">{t("hero.title.accent")}</span>
+            {t("hero.title.after")}
+          </h1>
+          <p className="mt-5 max-w-[520px] text-[15px] md:text-base text-muted-foreground leading-relaxed">
+            {t("hero.desc")}
+          </p>
+          <div className="mt-7 flex flex-wrap gap-3 justify-center">
+            <CTAButton variant="primary" onClick={openModal}>{t("cta.demo")}</CTAButton>
+            <CTAButton variant="outline" onClick={openModal}>{t("cta.pilot")}</CTAButton>
+          </div>
+          <div className="mt-7 flex flex-wrap gap-2 justify-center">
+            {heroBadges.map((b) => (
+              <span
+                key={b}
+                className="inline-flex items-center h-7 px-2.5 rounded-full bg-surface border border-border text-[11px] text-muted-foreground"
+              >
+                {b}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Alt: demo widget — geniş */}
+        <div className="mt-14 max-w-[860px] mx-auto">
+          <div className="rounded-2xl border border-border bg-background p-5 md:p-6 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_40px_-30px_rgba(0,0,0,0.15)]">
+            <div className="flex items-start justify-between pb-4 border-b border-border">
+              <div>
+                <div className="text-[13px] font-medium">{t("preview.workspace")}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{t("preview.subtitle")}</div>
+              </div>
+              <div className="text-right">
+                <div className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{t("preview.dq")}</div>
+                <div className="font-serif-display text-2xl leading-none mt-1 text-accent-red">87%</div>
+              </div>
             </div>
-            <div className="mt-7 flex flex-wrap gap-2">
-              {heroBadges.map((b) => (
-                <span
-                  key={b}
-                  className="inline-flex items-center h-7 px-2.5 rounded-full bg-surface border border-border text-[11px] text-muted-foreground"
-                >
-                  {b}
-                </span>
+
+            <div className="mt-4 space-y-2.5">
+              {previewCards.map((c) => (
+                <div key={c.title} className="rounded-lg border border-border bg-surface/60 p-3.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="text-[13px] font-medium">{c.title}</div>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-background border border-border text-muted-foreground whitespace-nowrap">
+                      {c.tag}
+                    </span>
+                  </div>
+                  <p className="mt-1.5 text-[12.5px] text-muted-foreground leading-relaxed">{c.body}</p>
+                </div>
               ))}
             </div>
-          </div>
 
-          {/* HERO PREVIEW CARD */}
-          <div className="lg:col-span-6">
-            <div className="rounded-2xl border border-border bg-background p-5 md:p-6 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_40px_-30px_rgba(0,0,0,0.15)]">
-              <div className="flex items-start justify-between pb-4 border-b border-border">
-                <div>
-                  <div className="text-[13px] font-medium">{t("preview.workspace")}</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">{t("preview.subtitle")}</div>
+            <div className="mt-4 grid grid-cols-4 gap-2">
+              {flowItems.map((f) => (
+                <div
+                  key={f}
+                  className="text-center text-[10px] md:text-[11px] uppercase tracking-[0.12em] text-muted-foreground py-2 rounded-md bg-surface border border-border"
+                >
+                  {f}
                 </div>
-                <div className="text-right">
-                  <div className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{t("preview.dq")}</div>
-                  <div className="font-serif-display text-2xl leading-none mt-1 text-accent-red">87%</div>
-                </div>
-              </div>
-
-              <div className="mt-4 space-y-2.5">
-                {previewCards.map((c) => (
-                  <div key={c.title} className="rounded-lg border border-border bg-surface/60 p-3.5">
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="text-[13px] font-medium">{c.title}</div>
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-background border border-border text-muted-foreground whitespace-nowrap">
-                        {c.tag}
-                      </span>
-                    </div>
-                    <p className="mt-1.5 text-[12.5px] text-muted-foreground leading-relaxed">{c.body}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-4 grid grid-cols-4 gap-2">
-                {flowItems.map((f) => (
-                  <div
-                    key={f}
-                    className="text-center text-[10px] md:text-[11px] uppercase tracking-[0.12em] text-muted-foreground py-2 rounded-md bg-surface border border-border"
-                  >
-                    {f}
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         </div>
