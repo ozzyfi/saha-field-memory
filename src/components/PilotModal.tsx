@@ -60,7 +60,7 @@ export const PilotModal = () => {
     if (errors[key]) setErrors((er) => ({ ...er, [key]: undefined }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = pilotSchema.safeParse(form);
     if (!parsed.success) {
@@ -73,8 +73,19 @@ export const PilotModal = () => {
       return;
     }
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const res = await fetch("https://formspree.io/f/mykokjya", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: parsed.data.name,
+          company: parsed.data.company,
+          phone: parsed.data.phone,
+          email: parsed.data.email,
+          _subject: `saha.team — Yeni Pilot Talebi: ${parsed.data.company}`,
+        }),
+      });
+      if (!res.ok) throw new Error("submit_failed");
       toast({
         title: t("modal.success.title"),
         description: t("modal.success.desc"),
@@ -82,7 +93,15 @@ export const PilotModal = () => {
       setForm(initial);
       setErrors({});
       closeModal();
-    }, 400);
+    } catch {
+      toast({
+        title: t("modal.err.submit") || "Gönderim başarısız",
+        description: t("modal.err.submitDesc") || "Lütfen tekrar deneyin veya info@toola.net adresine yazın.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputCls =

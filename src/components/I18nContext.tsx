@@ -17,11 +17,11 @@ const tr: Dict = {
   "hero.title.accent": "AI'ın kullanabileceği",
   "hero.title.after": " operasyon hafızasına dönüştürün.",
   "hero.desc":
-    "WhatsApp mesajları, fotoğraflar, sesli notlar ve formlar artık kaybolmuyor. saha.team bunları görev, kanıt, aksiyon ve kapanış kayıtlarına çevirir; siz de şirketinizin izin verdiği AI ile bu veriye anında soru sorabilirsiniz.",
+    "WhatsApp mesajı, fotoğraf, sesli not — saha.team bunları yapılandırır ve şirketinizin izin verdiği AI ile sorgulanabilir hale getirir.",
   "hero.badge.1": "Veriniz sizde kalır",
-  "hero.badge.2": "Kendi AI'ınızı getirin",
-  "hero.badge.3": "WhatsApp + mobil + form",
-  "hero.badge.4": "2–4 haftada pilot",
+  "hero.badge.2": "2–4 haftada pilot",
+  "hero.badge.3": "",
+  "hero.badge.4": "",
 
   "preview.workspace": "Demo Workspace",
   "preview.subtitle": "Field memory stream",
@@ -151,6 +151,8 @@ const tr: Dict = {
   "modal.err.phoneFormat": "Geçerli bir telefon girin",
   "modal.err.email": "Geçerli bir e-posta girin",
   "modal.err.emailMax": "E-posta en fazla 255 karakter olabilir",
+  "modal.err.submit": "Gönderim başarısız",
+  "modal.err.submitDesc": "Lütfen tekrar deneyin veya info@toola.net adresine yazın.",
 };
 
 const en: Dict = {
@@ -166,11 +168,11 @@ const en: Dict = {
   "hero.title.accent": "AI-ready",
   "hero.title.after": " operations memory.",
   "hero.desc":
-    "WhatsApp messages, photos, voice notes and forms no longer get lost. saha.team turns them into tasks, evidence, actions and closure records — so you can query that data instantly with the AI your company has approved.",
+    "WhatsApp, photos, voice notes — structured and queryable by the AI your company has approved.",
   "hero.badge.1": "Your data stays with you",
-  "hero.badge.2": "Bring your own AI",
-  "hero.badge.3": "WhatsApp + mobile + forms",
-  "hero.badge.4": "Pilot in 2–4 weeks",
+  "hero.badge.2": "Pilot in 2–4 weeks",
+  "hero.badge.3": "",
+  "hero.badge.4": "",
 
   "preview.workspace": "Demo Workspace",
   "preview.subtitle": "Field memory stream",
@@ -301,6 +303,8 @@ const en: Dict = {
   "modal.err.phoneFormat": "Enter a valid phone number",
   "modal.err.email": "Enter a valid email",
   "modal.err.emailMax": "Email must be at most 255 characters",
+  "modal.err.submit": "Submission failed",
+  "modal.err.submitDesc": "Please try again or reach us at info@toola.net.",
 };
 
 const dictionaries: Record<Lang, Dict> = { tr, en };
