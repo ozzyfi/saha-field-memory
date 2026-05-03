@@ -168,11 +168,11 @@ const en: Dict = {
   "hero.title.accent": "AI-ready",
   "hero.title.after": " operations memory.",
   "hero.desc":
-    "WhatsApp messages, photos, voice notes and forms no longer get lost. saha.team turns them into tasks, evidence, actions and closure records — so you can query that data instantly with the AI your company has approved.",
+    "WhatsApp, photos, voice notes — structured and queryable by the AI your company has approved.",
   "hero.badge.1": "Your data stays with you",
-  "hero.badge.2": "Bring your own AI",
-  "hero.badge.3": "WhatsApp + mobile + forms",
-  "hero.badge.4": "Pilot in 2–4 weeks",
+  "hero.badge.2": "Pilot in 2–4 weeks",
+  "hero.badge.3": "",
+  "hero.badge.4": "",
 
   "preview.workspace": "Demo Workspace",
   "preview.subtitle": "Field memory stream",
