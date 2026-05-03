@@ -303,6 +303,8 @@ const en: Dict = {
   "modal.err.phoneFormat": "Enter a valid phone number",
   "modal.err.email": "Enter a valid email",
   "modal.err.emailMax": "Email must be at most 255 characters",
+  "modal.err.submit": "Submission failed",
+  "modal.err.submitDesc": "Please try again or reach us at info@toola.net.",
 };
 
 const dictionaries: Record<Lang, Dict> = { tr, en };
