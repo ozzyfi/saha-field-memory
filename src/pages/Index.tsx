@@ -39,7 +39,7 @@ const Index = () => {
     t("hero.badge.2"),
     t("hero.badge.3"),
     t("hero.badge.4"),
-  ];
+  ].filter(Boolean);
 
   const previewCards = [
     { title: t("preview.card1.title"), tag: t("preview.card1.tag"), body: t("preview.card1.body") },
