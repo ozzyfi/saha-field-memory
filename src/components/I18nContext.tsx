@@ -17,11 +17,11 @@ const tr: Dict = {
   "hero.title.accent": "AI'ın kullanabileceği",
   "hero.title.after": " operasyon hafızasına dönüştürün.",
   "hero.desc":
-    "WhatsApp mesajları, fotoğraflar, sesli notlar ve formlar artık kaybolmuyor. saha.team bunları görev, kanıt, aksiyon ve kapanış kayıtlarına çevirir; siz de şirketinizin izin verdiği AI ile bu veriye anında soru sorabilirsiniz.",
+    "WhatsApp mesajı, fotoğraf, sesli not — saha.team bunları yapılandırır ve şirketinizin izin verdiği AI ile sorgulanabilir hale getirir.",
   "hero.badge.1": "Veriniz sizde kalır",
-  "hero.badge.2": "Kendi AI'ınızı getirin",
-  "hero.badge.3": "WhatsApp + mobil + form",
-  "hero.badge.4": "2–4 haftada pilot",
+  "hero.badge.2": "2–4 haftada pilot",
+  "hero.badge.3": "",
+  "hero.badge.4": "",
 
   "preview.workspace": "Demo Workspace",
   "preview.subtitle": "Field memory stream",
